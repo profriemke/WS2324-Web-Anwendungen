@@ -31,6 +31,10 @@ Route.get('/omm',async ()=>{
 
 });
 
+Route.get('/dienstag',async ({view})=>{
+  return view.render('dienstag', {text:'Der schönste Tag der Woche!'});
+});
+
 Route.get('/omm/stammtisch',async ({view})=>{
   const datum ='Donnerstag 16.11.'
   const zielgruppe = 'Profs und Studis';
@@ -63,6 +67,7 @@ Route.get('/nutzer',async ({view})=>{
 Route.post('/nutzer/anzeigen',async ({request, view})=>{ 
   const vorname = request.input('vorname');
   const nachname = request.input('nachname');
+  console.log(vorname+' '+nachname)
   return view.render('nutzer_anzeigen',{vorname,nachname});
 
 });
