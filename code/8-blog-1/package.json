@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@adonisjs/lucid": "^18.4.2"
+  }
+}
