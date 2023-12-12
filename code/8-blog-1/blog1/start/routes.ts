@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import Database from '@ioc:Adonis/Lucid/Database'
+import Hash from '@ioc:Adonis/Core/Hash'
 
 Route.get('/', async ({ view }) => {
   const posts = await Database.from('posts')
@@ -63,4 +64,27 @@ Route.get('/kunden', async ({ view }) => {
                                .where('plz', 72658)
                                .limit(10);
   return view.render('kunden', { kunden })
+});
+
+Route.get('/a', async ({ session}) => {
+  session.put('text','Hallo Welt');
+  return 'Wert gesetzt'
+ 
+});
+Route.get('/b', async ({ session }) => {
+  return session.get('text')
+});
+
+Route.get('/zaehler', async ({ session }) => {
+  session.put('zaehler', session.get('zaehler', 0) + 1);
+  return session.get('zaehler')
+});
+
+Route.get('/p', async ({  }) => {
+
+  return await Hash.make('123')
+});
+Route.get('/login', async ({ view  }) => {
+
+  return view.render('login')
 });
