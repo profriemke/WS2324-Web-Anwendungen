@@ -22,20 +22,23 @@ import Route from '@ioc:Adonis/Core/Route'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Hash from '@ioc:Adonis/Core/Hash'
 
-Route.get('/', async ({ view }) => {
+Route.get('/', async ({ view, session }) => {
   const posts = await Database.from('posts')
                               .select('*')
                               .orderBy('date', 'desc');
- return view.render('index',{ posts })
+ return view.render('index',{ posts, login: session.get('login') })
 })
-Route.post('/admin/post/create', async ({ request, response }) => {
+Route.post('/admin/post/create', async ({ request, response, session }) => {
+    if(!session.get('login')){
+    response.redirect('/login')
+  }
   try{
   const result = await Database.table('posts')
                          .insert({
                           title: request.input('title'),
                           teaser: request.input('teaser'),
                           text: request.input('text'),
-                          author: request.input('author'),
+                          author: session.get('id'),
                           date: new Date(),
                          })
   }catch(err){
@@ -45,7 +48,10 @@ Route.post('/admin/post/create', async ({ request, response }) => {
   return response.redirect('/');
 });
 
-Route.get('/admin/post/create', async ({ view }) => {
+Route.get('/admin/post/create', async ({ view, session, response }) => {
+  if(!session.get('login')){
+    response.redirect('/login')
+  }
   return view.render('admin_post_create')
 
 });
@@ -88,3 +94,33 @@ Route.get('/login', async ({ view  }) => {
 
   return view.render('login')
 });
+Route.get('/logout', async ({ session, response  }) => {
+  session.clear()
+  return response.redirect('/')
+});
+
+Route.post('/login', async ({ request, response,session, view  }) => {
+  const result = await Database.from('blog_user')
+                                .select('*')
+                                .where('login', request.input('login'))
+                                .first();
+  if(!result){
+    console.log('login nicht gefunden')
+    return view.render('login',{error:'Login nicht gefunden'})
+    
+  }            
+  if(!await Hash.verify(result.password, request.input('password'))) {
+    console.log('passwort falsch')
+   return view.render('login',{error:'Passwort falsch'})
+  }    
+  console.log('login ok')
+  session.put('login', result.login) 
+  session.put('id',result.id)        
+  return response.redirect('/');
+});
+Route.get('/about', async ({ view }) => {
+  return view.render('about') 
+})
+Route.get('/test', async (ctx) => {
+  return  ctx
+})

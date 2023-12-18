@@ -7,13 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+ @include('partials/navigation')
     <h1>Fantasischer Blog</h1>
+    @if(login!=undefined)
+        Hallo {{login}}!
+         <a href="/admin/post/create">Neuer Post</a>
+         <a href="/logout">Logout</a>
+    @else
+        <a href="/login">Login</a>
+    @end
     @each(post in posts)
         <p>
             <h2>{{ post.title}}</h2>
             <p>{{ post.teaser}}</p>
-            <p>{{ post.text}}</p>
-            <p>{{ post.author }} {{post.date}}</p>
+            <p><a href="/post/{{post.id}}">mehr..</a></p>
         </p>
     @end
 </body>

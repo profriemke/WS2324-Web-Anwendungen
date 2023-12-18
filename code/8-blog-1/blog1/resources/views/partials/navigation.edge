@@ -1,0 +1,11 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">Über mich</a></li>
+        @if(login!=undefined)
+            <li><a href="/logout">Logout</a></li>
+        @else
+          <li><a href="/login">Login</a></li>
+        @end
+    </ul>
+</nav>
