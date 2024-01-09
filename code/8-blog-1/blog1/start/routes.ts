@@ -106,9 +106,9 @@ Route.post('/login', async ({ request, response,session, view  }) => {
                                 .first();
   if(!result){
     console.log('login nicht gefunden')
-    return view.render('login',{error:'Login nicht gefunden'})
-    
-  }            
+    return view.render('login',{error:'Login nicht gefunden'})    
+  } 
+        
   if(!await Hash.verify(result.password, request.input('password'))) {
     console.log('passwort falsch')
    return view.render('login',{error:'Passwort falsch'})
