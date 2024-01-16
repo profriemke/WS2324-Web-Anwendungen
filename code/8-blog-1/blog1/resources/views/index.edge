@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@include('partials/html_header')
 <body>
  @include('partials/navigation')
+ <main>
     <h1>Fantasischer Blog</h1>
     @if(login!=undefined)
         Hallo {{login}}!
@@ -23,5 +17,6 @@
             <p><a href="/post/{{post.id}}">mehr..</a></p>
         </p>
     @end
+ </main>
 </body>
 </html>

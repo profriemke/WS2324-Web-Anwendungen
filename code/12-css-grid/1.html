@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .content {
+            background-color: rgb(254, 91, 221);
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-template-rows: 2fr 5fr 1fr;
+        }
+        header{
+            grid-row:1;
+            grid-column: 1 /span 4;
+            background-color: chartreuse;
+        }
+        nav {
+            grid-row: 2;
+            grid-column: 1;
+            background-color: coral;
+        }
+        main{
+            grid-row: 2;
+            grid-column: 2 /span 3;
+            background-color: gold;
+        }
+        footer{
+            grid-row: 3;
+            grid-column: 1 /span 4;
+            background-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header>ich bin's der header</header>
+        <nav>ich bin die navi</nav>
+        <main>ich bin der content</main>
+        <footer>ich bin unten, der footer</footer>
+    </div>
+</body>
+</html>
