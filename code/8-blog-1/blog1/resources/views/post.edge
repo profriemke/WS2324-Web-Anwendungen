@@ -2,7 +2,13 @@
 <body>
     <h1>{{ post.title }}</h1>
     <p> {{ post.teaser }}</p>
+    <p>
+        @if(post.url != undefined)
+        <img src="{{ post.url }}" alt="{{ post.title }}" height="200">
+        @end
+    </P>   
     <p>{{ post.text }}</p>
     <p>{{ post.date }} Autor: {{ post.author }}</p>
+    <a href="/admin/post/edit/{{ post.id }}">Editieren</a>
 </body>
 </html>

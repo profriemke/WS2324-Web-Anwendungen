@@ -1,9 +1,10 @@
 @include('partials/html_header')
 <body>
-    <form action="/admin/post/create" method="post">
+    <form action="/admin/post/create" method="post" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Titel"><br>
         <textarea name="teaser" rows="4" cols="30"></textarea><br>
         <textarea name="text" rows="10" cols="30"></textarea><br>
+        <input type="file" name="image">
         <input type="submit" value="Posten">
     </form>
 </body>

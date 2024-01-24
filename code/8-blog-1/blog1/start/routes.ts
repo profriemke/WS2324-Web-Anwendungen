@@ -22,48 +22,16 @@ import Route from '@ioc:Adonis/Core/Route'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Hash from '@ioc:Adonis/Core/Hash'
 
-Route.get('/', async ({ view, session }) => {
-  const posts = await Database.from('posts')
-                              .select('*')
-                              .orderBy('date', 'desc');
- return view.render('index',{ posts, login: session.get('login') })
-})
-Route.post('/admin/post/create', async ({ request, response, session }) => {
-    if(!session.get('login')){
-    response.redirect('/login')
-  }
-  try{
-  const result = await Database.table('posts')
-                         .insert({
-                          title: request.input('title'),
-                          teaser: request.input('teaser'),
-                          text: request.input('text'),
-                          author: session.get('id'),
-                          date: new Date(),
-                         })
-  }catch(err){
-    console.log(err);
-    return 'error'+err;
-  }
-  return response.redirect('/');
-});
+// PostsController
+Route.get('/', 'PostsController.index')
+Route.get('/post/:id', 'PostsController.show')
+Route.get('/admin/post/edit/:id', 'PostsController.edit')
+Route.post('/admin/post/edit/', 'PostsController.update')
+Route.post('/admin/post/create', 'PostsController.create')
+Route.post('/admin/post/create', 'PostsController.create_form')
+Route.get('/api/posts', 'PostsController.api_posts')
 
-Route.get('/admin/post/create', async ({ view, session, response }) => {
-  if(!session.get('login')){
-    response.redirect('/login')
-  }
-  return view.render('admin_post_create')
-
-});
-Route.get('/post/:id', async({ view, params }) => {
-  const post = await Database.from('posts')
-                              .select('*')
-                              .where('id', params.id)
-                              .first()
-  console.log(post)                            
-  return view.render('post',{post})
-})
-
+// Routen, die noch nicht in Controller ausgelagert sind
 Route.get('/kunden', async ({ view }) => {
   const kunden = await Database.from('kunde')
                                .select('kundennr', 'vorname', 'nachname')

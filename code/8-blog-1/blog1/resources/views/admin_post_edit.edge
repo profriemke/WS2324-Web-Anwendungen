@@ -1,0 +1,11 @@
+@include('partials/html_header')
+<body>
+    <form action="/admin/post/edit" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Titel" value="{{post.title}}"><br>
+        <textarea name="teaser" rows="4" cols="30">{{post.teaser}}</textarea><br>
+        <textarea name="text" rows="10" cols="30">{{post.text}}</textarea><br>
+        <input type="hidden" name="id" value="{{ post.id }}">
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
