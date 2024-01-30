@@ -71,3 +71,17 @@ Route.post('/nutzer/anzeigen',async ({request, view})=>{
   return view.render('nutzer_anzeigen',{vorname,nachname});
 
 });
+
+Route.get('/api/person',async ()=>{
+    const person ={ vorname:'Hans', nachname:'Müller'};
+    return JSON.stringify(person);
+});
+
+Route.get('/klausur', async ({ view })=>{
+   const person ={ vorname:'Hans', nachname:'Müller'};
+  //console.log(await view.render('klausur'))
+  const vorname ='Freddy'
+  const vornamen = ['Susanna', 'Marie', 'Konzanze']
+  return view.render('klausur', { person, loggedin: true, vorname, vornamen })
+
+})

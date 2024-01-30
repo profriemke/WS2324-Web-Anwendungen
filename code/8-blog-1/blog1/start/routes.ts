@@ -28,8 +28,19 @@ Route.get('/post/:id', 'PostsController.show')
 Route.get('/admin/post/edit/:id', 'PostsController.edit')
 Route.post('/admin/post/edit/', 'PostsController.update')
 Route.post('/admin/post/create', 'PostsController.create')
-Route.post('/admin/post/create', 'PostsController.create_form')
+Route.get('/admin/post/create', 'PostsController.create_form')
 Route.get('/api/posts', 'PostsController.api_posts')
+
+Route.get('/calc', async ({ view })=>{
+  return view.render('calc')
+})
+Route.post('/calc/result', async ({ view, request })=>{
+    const zahl1 = request.input('zahl1')
+    const zahl2 = request.input('zahl2')
+    const ergebnis = zahl1 * zahl2
+    return view.render('calc_result', { ergebnis })
+
+})
 
 // Routen, die noch nicht in Controller ausgelagert sind
 Route.get('/kunden', async ({ view }) => {
