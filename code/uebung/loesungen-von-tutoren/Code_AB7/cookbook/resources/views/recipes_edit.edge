@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Recipe Edit Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Rezept bearbeiten</h1>
+    @if(recipe)
+    <form action="/recipes/{{recipe.id}}/edit" method="post">
+      <input type="text" name="name" placeholder="{{recipe.name}}"> 
+        <input type="text" name="recipe" placeholder="{{recipe.recipe}}"> 
+        <button type="submit">Rezept speichern</button>
+    </form>
+    @end
+</body>
+</html>

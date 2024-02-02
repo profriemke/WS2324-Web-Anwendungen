@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rezepte</title>
+</head>
+<body>
+    <h1>Rezepte</h1>
+    <ul>
+            @each(recipe in recipes)
+                <li>
+                    <a href="/recipes/{{recipe.id}}">{{ recipe.name }}</a><br>
+                    <a href="/recipes/{{recipe.id}}/edit">-> {{recipe.name}} bearbeiten</a>
+                </li>
+            @end
+    </ul>
+    <a href="/recipe/new">Neues Rezept erstellen</a>
+</body>
+</html>
+ 

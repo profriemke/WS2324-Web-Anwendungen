@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</html><form action="{{ route('suche') }}" method="post">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <label for="ort">Stadt:</label>
+    <input type="text" id="ort" name="ort" required>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <label for="nachname">Nachname:</label>
+    <input type="text" id="nachname" name="nachname" required>
+    <button type="submit">Suchen</button>
+  </form>
+  
+
+  @if(kunden)
+    <table>
+      <thead>
+        <tr>
+          <th><strong>Vorname:</strong></th>
+          <th><strong>Nachname:</strong></th>
+          <th> <strong>Straße:</strong></th>
+          <th> <strong>PLZ:</strong></th>
+          <th> <strong>Ort:</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(kunde in kunden)
+          <tr>
+            <th>{{ kunde.vorname }}</th>
+            <th>{{kunde.nachname}}</th>
+            <th> {{ kunde.strasse }}</th>
+            <th> {{ kunde.plz }}</th>
+            <th> {{ kunde.ort }}</th>
+          </tr>
+        @endeach  
+      </tbody>
+    </table>
+  @endif
+</body>
+</html>

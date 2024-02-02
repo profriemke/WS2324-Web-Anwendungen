@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Hier ist das Rezept:
+   
+    @if(recipe)
+    <h2>{{ recipe.name }}</h2>
+    <p>Beschreibung: {{ recipe.recipe }}</p>
+@else
+    <p>Rezept nicht gefunden.</p>
+@endif
+
+
+</body>
+</html>

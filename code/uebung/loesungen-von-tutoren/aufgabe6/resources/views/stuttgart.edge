@@ -1,0 +1,29 @@
+{{-- resources/views/kunden.edge --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kundenliste</title>
+</head>
+<body>
+  <h1>Kundenliste</h1>
+
+  {{-- Überprüfe, ob Kunden vorhanden sind --}}
+  @if(kunden && kunden.length > 0)
+    <ul>
+      {{-- Iteriere über die Kunden und zeige ihre Informationen an --}}
+      @each(kunde in kunden)
+        <div id="{{ kunde.kundennr }}">
+          <strong>Name:</strong> {{ kunde.vorname }} {{kunde.nachname}} <br>
+          <strong>PLZ:</strong> {{ kunde.plz }} <br>
+          {{-- Weitere Felder entsprechend ausgeben --}}
+        </div>
+      @endeach
+    </ul>
+  @else
+    <p>Keine Kunden gefunden.</p>
+  @endif
+</body>
+</html>

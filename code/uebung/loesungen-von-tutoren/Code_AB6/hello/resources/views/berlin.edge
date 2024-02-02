@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Berlin</h1>
+<table>
+    <tr>
+        <th>Kundennummer</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Straße</th>
+        <th>PLZ</th>
+        <th>Ort</th>
+    </tr>
+    
+@each(kunde in kunden)
+<tr>
+        <td>{{kunde.kundennr}} </td>
+        <td>{{ kunde.vorname }} </td>
+        <td>{{ kunde.nachname }} </td>
+        <td>{{ kunde.strasse }} </td>
+        <td>{{ kunde.plz }} </td>
+        <td>{{ kunde.ort }} </td>
+    </tr>
+        
+@end
+<table>
+</body>
+</html>
